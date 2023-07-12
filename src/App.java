@@ -1,14 +1,10 @@
 import controllers.TiendaController;
 import views.View;
-import views.trajes.Inicio;
+import views.trajes.inicio;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // Vista vista = new VistaConsole();
-        // TiendaModel tienda = new TiendaModel();
-        // TrajeController control = new TrajeController(tienda, vista);
-        // control.inicializacion();
-        View inicio = (View) new Inicio();
+        View inicio = (View) new inicio();
         new TiendaController(inicio);
     }
 }

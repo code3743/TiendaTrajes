@@ -10,12 +10,12 @@ import models.TrajeModel;
  *
  * @author DELL
  */
-public class Listado extends javax.swing.JPanel {
+public class listado extends javax.swing.JPanel {
     private String lista = "";
     /**
      * Creates new form actualizar2
      */
-    public Listado(ArrayList<TrajeModel> trajes) {
+    public listado(ArrayList<TrajeModel> trajes) {
         
          for(TrajeModel traje : trajes){
             lista += traje.toString()+"\n";

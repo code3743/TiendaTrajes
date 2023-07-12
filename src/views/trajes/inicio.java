@@ -12,22 +12,14 @@ import models.TrajeModel;
 import views.View;
 
 
-public class Inicio extends javax.swing.JFrame implements View{
-
+public class inicio extends javax.swing.JFrame implements View{
 
     ArrayList<TrajeModel> listadoTrajes;
     ArrayList<TrajeModel> trajesComprados;
     TrajeModel traje;
 
-    /**
-     * @param args the command line arguments
-     */
     public void init() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+      
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -36,13 +28,13 @@ public class Inicio extends javax.swing.JFrame implements View{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
     }
@@ -75,7 +67,7 @@ public class Inicio extends javax.swing.JFrame implements View{
     /**
      * Creates new form inicio
      */
-    public Inicio() {
+    public inicio() {
         initComponents();
         
         insertar inser = new insertar(controller);
@@ -294,7 +286,7 @@ public class Inicio extends javax.swing.JFrame implements View{
     private void botonListarTrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarTrajeActionPerformed
    
        
-        Listado list = new Listado(controller.getTienda().listarTrajes());
+        listado list = new listado(controller.getTienda().listarTrajes());
         list.setSize(500,500);
         list.setLocation(0,0);
         content.removeAll();
