@@ -33,7 +33,7 @@ public class TiendaModel {
         return  trajes;
     }
 
-    public void actualizarDulce(TrajeModel traje, int index){
+    public void actualizarTraje(TrajeModel traje, int index){
         trajes.set(index, traje);
     }
     public boolean comprarTraje(int index){

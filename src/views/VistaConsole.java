@@ -12,7 +12,6 @@ public class VistaConsole implements Vista{
     String nombre,precio,indice, material;
     PaisEnum paisOrigen;
     TrajeModel traje;
-    TiendaModel tienda;
     TrajeController controller;
 
     @Override
@@ -20,13 +19,13 @@ public class VistaConsole implements Vista{
         boolean continuar = true;
         Scanner read = new Scanner(System.in);
         this.controller = control;
-
+        
         while(continuar){
             System.out.print("\n");
             System.out.println("----WELCOME-----");
             System.out.println("----OPCIONES----");
             System.out.println("1. Insertar traje");
-            System.out.println("2. actualizarTraje traje"); 
+            System.out.println("2. Actualizar traje"); 
             System.out.println("3. Eliminar traje"); 
             System.out.println("4. Buscar traje por nombre");
             System.out.println("5. Listar todos los trajes");
@@ -73,7 +72,9 @@ public class VistaConsole implements Vista{
                         case 1: 
                             System.out.print("Digite el nuevo nombre: ");
                             nombre = read.nextLine();
-                            control.actualizarTraje(Integer.parseInt(indice),nombre,null,0,null);
+                            traje = new TrajeModel(nombre,null,0,null);
+                            control.actualizarTraje(Integer.parseInt(indice),traje);
+                            
                             System.out.println("Nombre actualizado correctamente");
                             break;
                         case 2:
@@ -84,19 +85,22 @@ public class VistaConsole implements Vista{
                                     paisOrigen = PaisEnum.valueOf(ayuda.replaceAll(" ",""));
                                 }   
                             }
-                            control.actualizarTraje(Integer.parseInt(indice),null,null,0,paisOrigen);
+                            traje = new TrajeModel(null,paisOrigen,0,null);
+                            control.actualizarTraje(Integer.parseInt(indice),traje);
                             System.out.println("Pais de origen actualizado correctamente");
                             break;
                         case 3:
                             System.out.print("Digite el nuevo material de fabricacion: ");
                             material = read.nextLine();
-                            control.actualizarTraje(Integer.parseInt(indice),null,material,0,null);
+                            traje = new TrajeModel(null,null,0,material);
+                            control.actualizarTraje(Integer.parseInt(indice),traje);
                             System.out.println("Material de fabricacion actualizado correctamente");
                             break;
                         case 4:
                             System.out.print("Digite el nuevo precio: ");
                             precio = read.nextLine();
-                            control.actualizarTraje(Integer.parseInt(indice),null,null,Integer.parseInt(precio),null);
+                            traje = new TrajeModel(null,null,Integer.parseInt(precio),null);
+                            control.actualizarTraje(Integer.parseInt(indice),traje);
                             System.out.println("Precio actualizado correctamente");
                             break;
                     }break;
@@ -106,7 +110,10 @@ public class VistaConsole implements Vista{
                     indice = read.nextLine();
                     System.out.println("Dulce eliminado correctamente");
                     control.eliminarTraje((Integer.parseInt(indice))-1);break;
-                case 4: break;
+                case 4: 
+                    System.out.print("Digite el nombre del dulce a buscar: ");
+                    String name = read.nextLine();
+                    control.buscarTrajeNombre(name); break;
                 case 5: control.listarTrajes(); break;
                 case 6: System.exit(0); break;
                 default:
@@ -126,19 +133,18 @@ public class VistaConsole implements Vista{
 
     @Override
     public void actualizarTraje(int index, TrajeModel traje) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented metactualizarTrajeTraje'");
+        controller.getTienda().actualizarTraje(traje,index);
     }
 
     @Override
     public void eliminarTraje(int index) {
-        //tienda.eliminarTraje(index);
+        controller.getTienda().eliminarTraje(index);
     }
 
     @Override
-    public void buscarTraje(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarTraje'");
+    public void buscarTraje(String name) {
+        controller.getTienda().buscarTrajeNombre(nombre);
+
     }
 
     @Override

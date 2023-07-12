@@ -11,14 +11,18 @@ import views.Vista;
 public class TrajeController implements  ActionListener{
     Vista vista;
     TrajeModel traje;
-    TiendaModel tienda;
+    public TiendaModel tienda;
 
     public void inicializacion(){
         vista.iniciar(this);
+        tienda = new TiendaModel();
     }
      public TrajeController(TiendaModel tienda, Vista vista){
         this.tienda = tienda;
         this.vista = vista;
+    }
+    public TiendaModel getTienda(){
+        return tienda;
     }
     
     public void insertarTraje(){
@@ -30,26 +34,28 @@ public class TrajeController implements  ActionListener{
         vista.listarTrajes(tienda.listadoDeTrajes());
     }
 
-    public void actualizarTraje(int index, String nombre, String material,int precio, PaisEnum paisOrigen){
+    public void actualizarTraje(int index,TrajeModel trajecito){
         traje = tienda.listadoDeTrajes().get(index-1);
-        if(nombre != null){
-            traje.setNombre(nombre);    
+        if(trajecito.getNombre() != null){
+            traje.setNombre(trajecito.getNombre());    
         }
-        if(paisOrigen != null){
-            traje.setPaisOrigen(paisOrigen);
+        if(trajecito.getPaisOrigen() != null){
+            traje.setPaisOrigen(trajecito.getPaisOrigen());
         }
-        if(material != null){
-            traje.setMaterial(material);
+        if(trajecito.getMaterial() != null){
+            traje.setMaterial(trajecito.getMaterial());
         }
-        if(precio != 0){
-            traje.setPrecio(precio);
+        if(trajecito.getPrecio() != 0){
+            traje.setPrecio(trajecito.getPrecio());
         }
-        tienda.actualizarDulce(traje, index-1);
+        vista.actualizarTraje(index-1,traje);
         
     }
-
+    public void buscarTrajeNombre(String name){
+        vista.buscarTraje(name);
+    }
     public void eliminarTraje(int index){
-        tienda.eliminarTraje(index);
+        vista.eliminarTraje(index);
     }
 
 
