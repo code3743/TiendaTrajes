@@ -3,7 +3,7 @@ package views;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import controllers.TrajeController;
+import controllers.TiendaController;
 import models.PaisEnum;
 import models.TiendaModel;
 import models.TrajeModel;
@@ -12,10 +12,10 @@ public class VistaConsole implements Vista{
     String nombre,precio,indice, material;
     PaisEnum paisOrigen;
     TrajeModel traje;
-    TrajeController controller;
+    TiendaController controller;
 
     @Override
-    public void iniciar(TrajeController control) {
+    public void iniciar(TiendaController control) {
         boolean continuar = true;
         Scanner read = new Scanner(System.in);
         this.controller = control;

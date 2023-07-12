@@ -1,4 +1,4 @@
-import controllers.TrajeController;
+import controllers.TiendaController;
 import models.TiendaModel;
 import views.Vista;
 import views.VistaConsole;
@@ -7,7 +7,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         Vista vista = new VistaConsole();
         TiendaModel tienda = new TiendaModel();
-        TrajeController control = new TrajeController(tienda, vista);
+        TiendaController control = new TiendaController(tienda, vista);
         control.inicializacion();
     }
 }

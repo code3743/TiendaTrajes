@@ -8,7 +8,7 @@ import models.TiendaModel;
 import models.TrajeModel;
 import views.Vista;
 
-public class TrajeController implements  ActionListener{
+public class TiendaController implements  ActionListener{
     Vista vista;
     TrajeModel traje;
     public TiendaModel tienda;
@@ -17,7 +17,7 @@ public class TrajeController implements  ActionListener{
         vista.iniciar(this);
         tienda = new TiendaModel();
     }
-     public TrajeController(TiendaModel tienda, Vista vista){
+     public TiendaController(TiendaModel tienda, Vista vista){
         this.tienda = tienda;
         this.vista = vista;
     }
