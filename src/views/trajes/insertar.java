@@ -2,21 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.trajes;
+package views.trajes;
 import java.awt.Color;
+
+import controllers.TiendaController;
+import models.PaisEnum;
+import models.TrajeModel;
 /**
  *
  * @author DELL
  */
 public class insertar extends javax.swing.JPanel {
 
+
+
     /**
      * Creates new form insertar2
      */
-    public insertar() {
+    public insertar(TiendaController controller) {
         initComponents();
+        this.controller = controller;
     }
-
+    TiendaController controller;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +40,7 @@ public class insertar extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         subtituloPais = new javax.swing.JLabel();
         paistxt = new javax.swing.JTextField();
+        paises = new javax.swing.JComboBox<PaisEnum>(PaisEnum.values());
         jSeparator2 = new javax.swing.JSeparator();
         subtituloMaterial = new javax.swing.JLabel();
         materialtxt = new javax.swing.JTextField();
@@ -81,9 +89,13 @@ public class insertar extends javax.swing.JPanel {
         paistxt.setForeground(new java.awt.Color(153, 153, 153));
         paistxt.setText("Ingrese el pais de fabricacion");
         paistxt.setBorder(null);
-        paistxt.addMouseListener(new java.awt.event.MouseAdapter() {
+        paises.setBackground(new java.awt.Color(51, 51, 51));
+        paises.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
+        paises.setForeground(new java.awt.Color(153, 153, 153));
+        paises.setBorder(null);
+        paises.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                paistxtMousePressed(evt);
+               System.out.println(evt);
             }
         });
         paistxt.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +195,8 @@ public class insertar extends javax.swing.JPanel {
                                 .addGap(46, 46, 46)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(paistxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                       .addComponent(paises, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+ // .addComponent(paistxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(materialtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(131, Short.MAX_VALUE))
@@ -207,7 +220,8 @@ public class insertar extends javax.swing.JPanel {
                         .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(paistxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    //                     .addComponent(paistxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+.addComponent(paises, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(subtituloPais, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,16 +266,14 @@ public class insertar extends javax.swing.JPanel {
     private void nombretxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombretxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombretxtActionPerformed
-
-    private void paistxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paistxtMousePressed
-        if (paistxt.getText().equals("Ingrese el pais de fabricacion")){
-            paistxt.setText("");
-            paistxt.setForeground(Color.white);
-        }
-    }//GEN-LAST:event_paistxtMousePressed
+ 
 
     private void paistxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paistxtActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_paistxtActionPerformed
+
+    private void paisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paistxtActionPerformed
+    
     }//GEN-LAST:event_paistxtActionPerformed
 
     private void materialtxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialtxtMousePressed
@@ -287,45 +299,13 @@ public class insertar extends javax.swing.JPanel {
     }//GEN-LAST:event_preciotxtActionPerformed
 
     private void botonGuardarDatosInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarDatosInsertarActionPerformed
-        if(nombretxt.getText().isEmpty() || paistxt.getText().isEmpty() || materialtxt.getText().isEmpty()|| preciotxt.getText().isEmpty()){
-            //JOptionPane.showMessageDialog(this,"Todos los campos deben estar completos");
+        if(nombretxt.getText().isEmpty() || materialtxt.getText().isEmpty()|| preciotxt.getText().isEmpty()){
+              javax.swing.JOptionPane.showMessageDialog(this,"Todos los campos deben estar completos");
             return;
         }
-        if(nombretxt.getText().equals("Ingrese el nombre del traje") || paistxt.getText().equals("Ingrese el pais de fabricacion") || materialtxt.getText().equals("Ingrese el material del traje")|| preciotxt.getText().equals("Ingrese el precio del traje")){
-            //JOptionPane.showMessageDialog(this,"Todos los campos deben estar completos");
-            return;
-        }
-        /*
-        if(!Dulce.isSelected() && !Dulce1.isSelected() && !Dulce2.isSelected()){
-            //JOptionPane.showMessageDialog(this,"Eliga una categoria");
-            return;
-        }*/
-        /*
-        try {
-            int precio  = Integer.parseInt(nombretxt1.getText());
-            dulce.setNombre(nombretxt.getText());
-            dulce.setPrecio(precio);
-            dulce.setDescripcion(nombretxt2.getText());
-
-            Categorias categoria = Categorias.valueOf(categoriaSelect.toUpperCase());
-            dulce.setCategoria(categoria);
-
-            vista.setDulce(dulce);
-            nombretxt.setText("");
-            nombretxt1.setText("");
-            nombretxt2.setText("");
-            Dulce.setSelected(false);
-            Dulce1.setSelected(false);
-            Dulce2.setSelected(false);
-            JOptionPane.showMessageDialog(this,"Dulce agregado\n"+dulce.toString());
-
-        }catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(this,"El precio debe ser un numero valio :(");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Algo salio mal :(");
-            System.out.println(e.toString());
-            return;
-        }*/
+    TrajeModel traje =  new TrajeModel(nombretxt.getText(), PaisEnum.values()[paises.getSelectedIndex()], Double.parseDouble(preciotxt.getText()), materialtxt.getText());
+        controller.insertarTraje(traje);
+      javax.swing.JOptionPane.showMessageDialog(this,"Se agrego el traje");
     }//GEN-LAST:event_botonGuardarDatosInsertarActionPerformed
 
 
@@ -339,6 +319,9 @@ public class insertar extends javax.swing.JPanel {
     private javax.swing.JTextField materialtxt;
     private javax.swing.JTextField nombretxt;
     private javax.swing.JTextField paistxt;
+    private javax.swing.JComboBox<PaisEnum> paises;
+
+
     private javax.swing.JTextField preciotxt;
     private javax.swing.JLabel subtituloMaterial;
     private javax.swing.JLabel subtituloNombre;

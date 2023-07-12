@@ -2,19 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.trajes;
-import java.awt.Color;
+package views.trajes;
 /**
  *
  * @author DELL
  */
+import java.util.ArrayList;
+
+import models.TrajeModel;
 public class listadobuy extends javax.swing.JPanel {
 
     /**
      * Creates new form actualizar2
      */
-    public listadobuy() {
+    private String lista = "";
+    public listadobuy(ArrayList<TrajeModel> trajes) {
+     
+         
+         for(TrajeModel traje : trajes){
+            lista += traje.toString()+"\n";
+        }
         initComponents();
+       
     }
 
     /**
@@ -25,49 +34,21 @@ public class listadobuy extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        textArea = new javax.swing.JTextArea();
+        textArea.setFont(new java.awt.Font("Mongolian Baiti", 1, 24)); // NOI18N
+        textArea.setText(lista);
+        textArea.setColumns(25);        
+        textArea.setRows(15);
+        textArea.setEnabled(false);
 
-        jPanel1 = new javax.swing.JPanel();
-        tituloListadoComprados = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
-
-        tituloListadoComprados.setFont(new java.awt.Font("Mongolian Baiti", 1, 36)); // NOI18N
-        tituloListadoComprados.setForeground(new java.awt.Color(255, 255, 255));
-        tituloListadoComprados.setText("Listado trajes Comprados ");
-
-        jScrollPane1.setBackground(new java.awt.Color(153, 0, 0));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tituloListadoComprados))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tituloListadoComprados, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 500));
+        scroll = new javax.swing.JScrollPane(textArea);
+        
+        add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 500));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel tituloListadoComprados;
+  private javax.swing.JScrollPane scroll;
+    private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }

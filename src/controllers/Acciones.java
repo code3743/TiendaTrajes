@@ -1,6 +1,6 @@
-package models;
+package controllers;
 
-public enum Action {
+public enum Acciones {
     Actualizar,
     Buscar,
     Eliminar,

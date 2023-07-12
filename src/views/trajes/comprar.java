@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.trajes;
+package views.trajes;
 import java.awt.Color;
+
+import javax.swing.JOptionPane;
+
+import controllers.TiendaController;
 /**
  *
  * @author DELL
@@ -13,9 +17,11 @@ public class comprar extends javax.swing.JPanel {
     /**
      * Creates new form actualizar2
      */
-    public comprar() {
+    public comprar(TiendaController controller) {
         initComponents();
+        this.controller = controller;
     }
+TiendaController controller;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,7 +136,16 @@ public class comprar extends javax.swing.JPanel {
     }//GEN-LAST:event_nombretxtActionPerformed
 
     private void botonComprarTrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprarTrajeActionPerformed
-        // TODO add your handling code here:
+         if (nombretxt.getText().equals("Ingrese el nombre del traje") || nombretxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingresa el nombre a buscar");
+            return;
+        }
+
+        if (controller.comprarTraje(nombretxt.getText())) {
+            JOptionPane.showMessageDialog(this, "Comprado");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontro");
+        }
     }//GEN-LAST:event_botonComprarTrajeActionPerformed
 
 

@@ -2,30 +2,93 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.trajes;
+package views.trajes;
 import java.awt.BorderLayout;
-/**
- *
- * @author DELL
- */
-public class inicio extends javax.swing.JFrame {
+import java.util.ArrayList;
 
+import controllers.Acciones;
+import controllers.TiendaController;
+import models.TrajeModel;
+import views.View;
+
+
+public class Inicio extends javax.swing.JFrame implements View{
+
+
+    ArrayList<TrajeModel> listadoTrajes;
+    ArrayList<TrajeModel> trajesComprados;
+    TrajeModel traje;
+
+    /**
+     * @param args the command line arguments
+     */
+    public void init() {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAcercade;
+
+    private javax.swing.JButton botonActualizarTraje;
+
+    private javax.swing.JButton botonBuscarTraje;
+
+    private javax.swing.JButton botonComprarTraje;
+
+    private javax.swing.JButton botonEliminarTraje;
+
+    private javax.swing.JButton botonInsertartraje;
+
+    private javax.swing.JButton botonListarCompradosTraje;
+
+    private javax.swing.JButton botonListarTraje;
+
+    private javax.swing.JPanel content;
+
+    private javax.swing.JLabel jLabel1;
+
+    private javax.swing.JPanel jPanel1;
+
+    private TiendaController controller;
+    // End of variables declaration//GEN-END:variables
     /**
      * Creates new form inicio
      */
-    public inicio() {
+    public Inicio() {
         initComponents();
         
-        insertar inser = new insertar();
+        insertar inser = new insertar(controller);
         inser.setSize(500,500);
         inser.setLocation(0,0);
         content.removeAll();
         content.add(inser,BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-        
+        init();
+        setVisible(true);
+    
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -190,9 +253,8 @@ public class inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void botonInsertartrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertartrajeActionPerformed
-        insertar inser = new insertar();
+        insertar inser = new insertar(controller);
         inser.setSize(500,500);
         inser.setLocation(0,0);
         content.removeAll();
@@ -200,9 +262,9 @@ public class inicio extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_botonInsertartrajeActionPerformed
-
     private void botonActualizarTrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarTrajeActionPerformed
-        actualizar actu = new actualizar();
+        actualizar actu = new actualizar(controller);
+        
         actu.setSize(500,500);
         actu.setLocation(0,0);
         content.removeAll();
@@ -210,9 +272,9 @@ public class inicio extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_botonActualizarTrajeActionPerformed
-
     private void botonEliminarTrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarTrajeActionPerformed
-        eliminar elim = new eliminar();
+        eliminar elim = new eliminar(controller);
+
         elim.setSize(500,500);
         elim.setLocation(0,0);
         content.removeAll();
@@ -220,9 +282,8 @@ public class inicio extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_botonEliminarTrajeActionPerformed
-
     private void botonBuscarTrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarTrajeActionPerformed
-        buscar busc = new buscar();
+        buscar busc = new buscar(controller);
         busc.setSize(500,500);
         busc.setLocation(0,0);
         content.removeAll();
@@ -230,9 +291,10 @@ public class inicio extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_botonBuscarTrajeActionPerformed
-
     private void botonListarTrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarTrajeActionPerformed
-        listado list = new listado();
+   
+       
+        Listado list = new Listado(controller.getTienda().listarTrajes());
         list.setSize(500,500);
         list.setLocation(0,0);
         content.removeAll();
@@ -240,9 +302,8 @@ public class inicio extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_botonListarTrajeActionPerformed
-
     private void botonComprarTrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprarTrajeActionPerformed
-        comprar comp = new comprar();
+        comprar comp = new comprar(controller);
         comp.setSize(500,500);
         comp.setLocation(0,0);
         content.removeAll();
@@ -250,7 +311,6 @@ public class inicio extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_botonComprarTrajeActionPerformed
-
     private void botonAcercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAcercadeActionPerformed
         acercade acerca = new acercade();
         acerca.setSize(500,500);
@@ -260,9 +320,8 @@ public class inicio extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_botonAcercadeActionPerformed
-
     private void botonListarCompradosTrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarCompradosTrajeActionPerformed
-        listadobuy listbuy = new listadobuy();
+        listadobuy listbuy = new listadobuy(controller.getTienda().listarVentas());
         listbuy.setSize(500,500);
         listbuy.setLocation(0,0);
         content.removeAll();
@@ -270,53 +329,30 @@ public class inicio extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_botonListarCompradosTrajeActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new inicio().setVisible(true);
-            }
-        });
+    @Override
+    public void actualizarTraje(int index) {
+        // TODO Auto-generated method stub
+        
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAcercade;
-    private javax.swing.JButton botonActualizarTraje;
-    private javax.swing.JButton botonBuscarTraje;
-    private javax.swing.JButton botonComprarTraje;
-    private javax.swing.JButton botonEliminarTraje;
-    private javax.swing.JButton botonInsertartraje;
-    private javax.swing.JButton botonListarCompradosTraje;
-    private javax.swing.JButton botonListarTraje;
-    private javax.swing.JPanel content;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
+    @Override
+    public TrajeModel getTrajeModel() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public void historialCompras(ArrayList<TrajeModel> compras) {
+     trajesComprados = compras;
+        
+    }
+    @Override
+    public void init(TiendaController controller) {
+        this.controller = controller;
+        
+    }
+    @Override
+    public void listadoDeTrajes(ArrayList<TrajeModel> trajes) {
+        listadoTrajes = trajes;
+        
+    }
+  
 }

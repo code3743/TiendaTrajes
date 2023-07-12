@@ -35,6 +35,9 @@ public class TiendaModel {
     public ArrayList<TrajeModel> listarTrajes(){
         return trajes;
     }
+     public ArrayList<TrajeModel> listarVentas(){
+        return inventario.getVentas();
+    }
 
     public int buscarTrajeNombre(String nombre) {
         for (int i = 0; i < trajes.size(); i++) {

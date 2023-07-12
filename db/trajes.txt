@@ -1,0 +1,4 @@
+Ejmplo 1,Surinam,12000.0,Cuero
+fojahcljk,Vanuatu,45545.0,das
+test,Egipto,1500.0,cuero
+test1,Francia,3500.0,ff

@@ -47,6 +47,7 @@ public class DBService {
             String linea = "";
             String contenido = "";
             while ((linea = db.readLine()) != null) {
+                if(linea.isEmpty()) continue;
                 contador++;
                 if(contador == index){
                     contenido += trajeModel.toString() +"\n";
@@ -54,6 +55,7 @@ public class DBService {
                     contenido += linea +"\n";
                 }
             }
+          
             db.setLength(0);
             db.writeBytes(contenido);
             return true;

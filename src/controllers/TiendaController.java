@@ -1,58 +1,83 @@
 package controllers;
 
-import models.Action;
+import views.View;
+import models.TrajeModel;
 import models.Inventario;
 import models.TiendaModel;
-import models.TrajeModel;
 import services.DBService;
-import views.Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TiendaController implements ActionListener {
+public class TiendaController {
     TiendaModel tienda;
-    Vista vista;
-    Action acciones;
+    View vista;
+    Acciones acciones;
     DBService dbAlmacen = new DBService("db/trajes.txt");
     DBService dbVentas = new DBService("db/ventas.txt");
 
-    TiendaController(Vista vista) {
+    public TiendaController(View vista) {
         dbAlmacen.init();
         dbVentas.init();
         tienda = new TiendaModel(dbAlmacen.cargarRegistro());
         tienda.setInventario(new Inventario(dbVentas.cargarRegistro()));
         this.vista = vista;
-        vista.iniciar(this);
+        vista.init(this);
     }
 
-    public void setAccion(Action accion) {
+    public void setAccion(Acciones accion) {
         acciones = accion;
     }
 
-
-    public void insertarTraje(TrajeModel traje){
-        tienda.insetarTraje(traje);
+    public void insertarTraje(TrajeModel traje) {
+        if (tienda.insetarTraje(traje)) {
+            dbAlmacen.guardarRegistro(traje);
+        }
     }
 
-    public void listarTrajes(){
-        vista.listarTrajes(tienda.listarTrajes());
+    public int buscarTraje(String nombre) {
+        return tienda.buscarTrajeNombre(nombre);
     }
 
-    public void actualizarTraje(int index,TrajeModel traje){
-        vista.actualizarTraje(index,traje);
-    }
-    public void buscarTrajeNombre(String name){
-        vista.buscarTraje(name);
-    }
-    public void eliminarTraje(int index){
-        vista.eliminarTraje(index);
+    public boolean eliminarTraje(String nombre) {
+        int index = buscarTraje(nombre);
+        if (index == -1)
+            return false;
+        if (tienda.eliminarTraje(index)) {
+            dbAlmacen.eliminarRegistro(index);
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public boolean actualizarTraje(int index, TrajeModel nuevoTraje) {
+     
+        if (index == -1)
+            return false;
+        if (tienda.actualizarTraje(index, nuevoTraje)) {
+           System.out.println( dbAlmacen.actualizaRegistro(index, nuevoTraje));
+            return true;
+        }
+        return false;
+    }
+    public boolean comprarTraje(String nombre){
+         int index = buscarTraje(nombre);
+        if (index == -1)
+            return false;
+        if(tienda.comprarTraje(index)){
+            dbVentas.guardarRegistro(tienda.listarTrajes().get(index));
+            return true;
+        }
+        return false;
+    }
+
+    public TiendaModel getTienda() {
+        return tienda;
+    }
+
+    public void actionPerformed(Acciones acciones) {
         switch (acciones) {
             case Actualizar:
-                
+
                 break;
             case Buscar:
                 break;
@@ -61,6 +86,7 @@ public class TiendaController implements ActionListener {
             case Agregar:
                 break;
             case Listar:
+                vista.listadoDeTrajes(tienda.listarTrajes());
                 break;
             case Comprar:
                 break;
