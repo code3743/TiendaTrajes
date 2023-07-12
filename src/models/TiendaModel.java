@@ -29,6 +29,13 @@ public class TiendaModel {
         return -1;
     }
 
+    public ArrayList<TrajeModel> listadoDeTrajes(){
+        return  trajes;
+    }
+
+    public void actualizarTraje(TrajeModel traje, int index){
+        trajes.set(index, traje);
+    }
     public boolean comprarTraje(int index){
         return true;
     }
