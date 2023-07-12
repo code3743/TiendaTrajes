@@ -2,6 +2,8 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import models.PaisEnum;
 import models.TiendaModel;
 import models.TrajeModel;
 import views.Vista;
@@ -21,9 +23,34 @@ public class TrajeController implements  ActionListener{
     
     public void insertarTraje(){
         traje = vista.getTraje();
-        System.out.println(tienda.insetarTraje(traje));
+        tienda.insetarTraje(traje);
     }
 
+    public void listarTrajes(){
+        vista.listarTrajes(tienda.listadoDeTrajes());
+    }
+
+    public void actualizarTraje(int index, String nombre, String material,int precio, PaisEnum paisOrigen){
+        traje = tienda.listadoDeTrajes().get(index-1);
+        if(nombre != null){
+            traje.setNombre(nombre);    
+        }
+        if(paisOrigen != null){
+            traje.setPaisOrigen(paisOrigen);
+        }
+        if(material != null){
+            traje.setMaterial(material);
+        }
+        if(precio != 0){
+            traje.setPrecio(precio);
+        }
+        tienda.actualizarDulce(traje, index-1);
+        
+    }
+
+    public void eliminarTraje(int index){
+        tienda.eliminarTraje(index);
+    }
 
 
 
@@ -34,9 +61,6 @@ public class TrajeController implements  ActionListener{
 
 
     @Override
-    public void actionPerformed(ActionEvent e) { 
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
+    public void actionPerformed(ActionEvent e) {}
     
 }
