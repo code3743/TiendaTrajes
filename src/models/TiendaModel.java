@@ -32,6 +32,10 @@ public class TiendaModel {
         return trajes.set(index, traje) != null;
     }
 
+    public ArrayList<TrajeModel> listarTrajes(){
+        return trajes;
+    }
+
     public int buscarTrajeNombre(String nombre) {
         for (int i = 0; i < trajes.size(); i++) {
             if (trajes.get(i).getNombre().toLowerCase().equals(nombre.toLowerCase())) {

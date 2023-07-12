@@ -6,7 +6,6 @@ public class TrajeModel {
     private double precio;
     private String material;
 
-   
     public TrajeModel(String nombre, PaisEnum paisOrigen, double precio, String material) {
         this.nombre = nombre;
         this.paisOrigen = paisOrigen;
@@ -50,4 +49,5 @@ public class TrajeModel {
     public String toString() {
         return nombre + "," + paisOrigen.toString() + "," + precio+","+material;
     }
+
 }
