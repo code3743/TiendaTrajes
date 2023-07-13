@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import controllers.TiendaController;
 import models.PaisEnum;
-import models.TiendaModel;
 import models.TrajeModel;
 
 public class VistaConsole implements Vista{

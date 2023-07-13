@@ -1,9 +1,6 @@
 package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import models.PaisEnum;
 import models.TiendaModel;
 import models.TrajeModel;
 import views.Vista;
